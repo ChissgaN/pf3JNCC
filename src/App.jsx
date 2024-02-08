@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { Search } from "./components/Search";
 import {
-  getForecast,
-  getForecastByCords,
+  getForeca,
+  getForecaLocations,
   getWeather,
-  getWeatherByCords,
+  getWeatherLocations,
 } from "./scripts/fetch";
-import { addPlaceToLocalStorage } from "./scripts/localStorage";
+import { saveLocalStorage } from "./scripts/localStorage";
 import TodayWeather from "./components/TodaysWeather";
-import Temperatura from "./components/Temperature";
+import Temp from "./components/Temperature";
 import Weak from "./components/Weak";
 import Footer from "./components/Footer";
 import Sidebar from "./components/Sidebar";
@@ -20,7 +20,7 @@ function App() {
     windStatus: 0,
     humidity: 0,
     airPressure: 0,
-    visibilityInMiles: 0,
+    visibilityMiles: 0,
     weather: "",
     locationName: "",
   });
@@ -34,7 +34,7 @@ function App() {
 
   const changeWeather = (data) => {
     const { weather, main, visibility, wind, name } = data;
-    const date = new Date(); // Obtener la fecha actual
+    const date = new Date(); // Obtener la dateDay actual
     const dateOptions = { weekday: "short", day: "numeric", month: "short" };
 
     setWeatherData({
@@ -44,49 +44,49 @@ function App() {
       windStatus: Math.round(wind?.speed ?? 0),
       humidity: Math.round(main?.humidity ?? 0),
       airPressure: main?.pressure ?? 0,
-      visibilityInMiles: visibility ? visibility / 1609.34 : 0,
+      visibilityMiles: visibility ? visibility / 1609.34 : 0,
       weather: weather[0]?.main ?? "Shower",
       locationName: name,
     });
-    const progreso = document.getElementById("progress");
+    const progress = document.getElementById("progress");
     const windStatus = document.getElementById("windStatus");
-    progreso.style.width = Math.round(main?.humidity ?? 0) + "%";
+    progress.style.width = Math.round(main?.humidity ?? 0) + "%";
     windStatus.style.transform = `rotate(${wind.deg}deg)`;
   };
 
-  const changeForecast = (data) => {
-    const dailyForecast = [];
+  const changeFahreorecast = (data) => {
+    const dailyForeca = [];
 
     // Iterar sobre cada segmento de tiempo en el pronóstico extendido
     data.list.forEach((segment) => {
-      const fechaTexto = segment.dt_txt;
-      const fecha = new Date(fechaTexto);
-      const dia = fecha.toLocaleDateString("en-US", {
+      const dateText = segment.dt_txt;
+      const dateDay = new Date(dateText);
+      const day = dateDay.toLocaleDateString("en-US", {
         weekday: "short",
         day: "numeric",
         month: "short",
       });
       // Si es un nuevo día, inicializar el objeto para ese día
-      if (!dailyForecast[dia]) {
-        dailyForecast[dia] = {
+      if (!dailyForeca[day]) {
+        dailyForeca[day] = {
           minTemp: segment.main.temp,
           maxTemp: segment.main.temp,
           weather: segment.weather[0].main,
         };
       } else {
-        // Actualizar las temperaturas mínima y máxima si corresponde
-        dailyForecast[dia].minTemp = Math.min(
-          dailyForecast[dia].minTemp,
+        // Actualizar las Temps mínima y máxima si corresponde
+        dailyForeca[day].minTemp = Math.min(
+          dailyForeca[day].minTemp,
           segment.main.temp
         );
-        dailyForecast[dia].maxTemp = Math.max(
-          dailyForecast[dia].maxTemp,
+        dailyForeca[day].maxTemp = Math.max(
+          dailyForeca[day].maxTemp,
           segment.main.temp
         );
       }
     });
-    const dayKeys = Object.keys(dailyForecast);
-    setForecastData(dailyForecast);
+    const dayKeys = Object.keys(dailyForeca);
+    setForecastData(dailyForeca);
     setKeys(dayKeys);
   };
 
@@ -99,34 +99,32 @@ function App() {
         const lon = position.coords.longitude;
 
         // Llamar a una función para obtener datos del clima, por ejemplo
-        getWeatherByCords(lat, lon).then((data) => changeWeather(data));
-        getForecastByCords(lat, lon).then((data) => changeForecast(data));
+        getWeatherLocations(lat, lon).then((data) => changeWeather(data));
+        getForecaLocations(lat, lon).then((data) => changeFahreorecast(data));
       });
     } else {
-      // El navegador no soporta la geolocalización
-      console.log("La geolocalización no está disponible en este navegador.");
     }
   };
 
   const inputSearch = (place) => {
-    addPlaceToLocalStorage(place);
+    saveLocalStorage(place);
     getWeather(place).then((data) => changeWeather(data));
-    getForecast(place).then((data) => changeForecast(data));
+    getForeca(place).then((data) => changeFahreorecast(data));
   };
 
-  const changeF = () => {
+  const changeFahre = () => {
     setIsFahrenheit(true);
     setIsMph(true)
   };
 
-  const changeC = () => {
+  const changeCels = () => {
     setIsFahrenheit(false);
     setIsMph(false)
   };
   
   useEffect(() => {
     getWeather("guatemala").then((data) => changeWeather(data));
-    getForecast("guatemala").then((data) => changeForecast(data));
+    getForeca("guatemala").then((data) => changeFahreorecast(data));
   }, []);
 
   return (
@@ -142,7 +140,7 @@ function App() {
       </div>
 
       <section className="md:flex-1 md:pl-[400px] md:m-20">
-        <Temperatura changeF={changeF} changeC={changeC} />
+        <Temp changeFahre={changeFahre} changeCels={changeCels} />
         <Weak
           keys={keys}
           forecastData={forecastData}

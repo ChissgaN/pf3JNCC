@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Temperatura({ changeF, changeC }) {
+export default function Temperatura({ changeFahre, changeCels }) {
   const [color, setColor] = useState('#585676');
   const [color2, setColor2] = useState('#A09FB1');
 
@@ -15,7 +15,7 @@ export default function Temperatura({ changeF, changeC }) {
         type="button"
         className="rounded-full  h-[40px] w-[40px] font-bold text-silver bg-[#585676] undefined mx-3"
         onClick={() => {
-          changeC();
+          changeCels();
           paintSky();
         }}
         style={{ backgroundColor: color2 }}
@@ -26,7 +26,7 @@ export default function Temperatura({ changeF, changeC }) {
         type="button"
         className="rounded-full  h-[40px] w-[40px] font-bold text-silver  bg-[#585676] undefined "
         onClick={() => {
-          changeF();
+          changeFahre();
           paintSky();
         }}
         style={{ backgroundColor: color }}

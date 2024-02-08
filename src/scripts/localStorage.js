@@ -1,6 +1,6 @@
 const storageName = 'weatherPlaces'
 
-function addPlaceToLocalStorage (place) {
+function saveLocalStorage (place) {
   const getPlaces = window.localStorage.getItem(storageName)
   const places = JSON.parse(getPlaces) ?? []
 
@@ -16,6 +16,6 @@ function getPlacesFromLocalStorage () {
 }
 
 export {
-  addPlaceToLocalStorage,
+  saveLocalStorage,
   getPlacesFromLocalStorage
 }

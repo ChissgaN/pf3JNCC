@@ -52,7 +52,7 @@ export default function TodayWeather({ weatherData, isMph }) {
         <article className="flex flex-col items-center bg-blue-1 w-[100%] h-[204px] p-6 justify-center">
           <p className="text-base font-medium pb-2 ">Visibility</p>
           <p className="text-6xl font-bold">
-            {weatherData.visibilityInMiles.toFixed(1)}{" "}
+            {weatherData.visibilityMiles.toFixed(1)}{" "}
             <span className="text-5xl font-medium">miles</span>
           </p>
         </article>

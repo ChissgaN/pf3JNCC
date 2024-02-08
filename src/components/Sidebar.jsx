@@ -5,7 +5,7 @@ import { LocationIcon } from "./Icons";
 export default function Sidebar({weatherData,
     isFahrenheit}) {
   return (
-    <article
+    <div
       className="px-4 bg-blue-1 h-[860px] w-[100%] truncate max-sm:w-full 
           max-sm:py-[0] sm:w-[100%] sm:h-[950px] 
           md:h-screen
@@ -65,6 +65,6 @@ export default function Sidebar({weatherData,
           </div>
         </div>
       </div>
-    </article>
+    </div>
   );
 }
