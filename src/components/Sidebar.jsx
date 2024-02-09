@@ -6,7 +6,7 @@ export default function Sidebar({weatherData,
     isFahrenheit}) {
   return (
     <div
-      className="px-4 bg-blue-1 h-[810px] w-[100%] truncate max-sm:w-full 
+      className="px-4 bg-blue-1 h-[850px] w-[100%] truncate max-sm:w-full 
           max-sm:py-[0] sm:w-[100%] sm:h-[950px] 
           md:h-screen
         "
