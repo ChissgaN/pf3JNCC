@@ -6,14 +6,14 @@ export default function Sidebar({weatherData,
     isFahrenheit}) {
   return (
     <div
-      className="px-4 bg-blue-1 h-[860px] w-[100%] truncate max-sm:w-full 
+      className="px-4 bg-blue-1 h-screen w-[100%] truncate max-sm:w-full 
           max-sm:py-[0] sm:w-[100%] sm:h-[950px] 
           md:h-screen
         "
     >
       <div className="flex flex-col items-center relative">
         <img
-          className="w-36 absolute m-[35px] mt-[70px]
+          className="w-36 absolute m-[35px] mt-[70px] animate-bounce
 
               sm:w-44 sm:h-44 sm:mt-[120px] max-sm:mt-[160px]
               
@@ -39,7 +39,7 @@ export default function Sidebar({weatherData,
               sm:top-[400px] max-sm:top-[375px]
               "
         >
-          <p className="text-[144px] font-medium">
+          <p className="text-[144px] font-medium animate-pulse">
             {isFahrenheit
               ? Math.floor(weatherData.temp * (9 / 5) + 32)
               : weatherData.temp}

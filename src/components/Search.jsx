@@ -35,7 +35,8 @@ export function Search({ inputSearch, cords }) {
       sm:w-[100%]
       ">
         <button onClick={toggleMenu} className="bg-gray-3 h-10 max-sm:w-[161px]
-          sm:w-[190px]" > 
+          sm:w-[190px]
+          hover:bg-white hover:text-blue-3 " > 
         Search for places
         </button>
         <button onClick={cords} className="flex justify-center items-center top-6 right-4 bg-gray-3 rounded-full p-3 w-[40px] h-[40px]" 
@@ -63,14 +64,14 @@ export function Search({ inputSearch, cords }) {
               onChange={(event) => setSearchPlace(event.target.value)}
             />
           </div>
-          <button type="submit" className="bg-blue-3 px-5 py-3">
+          <button type="submit" className="bg-blue-3 px-5 py-3 hover:bg-sky-800 "  onClick={toggleMenu}>
             Search
           </button>
         </form>
         <div className="flex flex-col py-10 gap-3">
           {places?.map((place) => (
             <button
-              className="flex w-full px-3 py-6 border hover:border border-transparent hover:border-gray-1 group"
+              className="flex w-full px-3 py-6 border hover:border border-transparent hover:border-gray-1 group hover:scale-105 hover:animate-pulse"
               key={place}
               onClick={() => selectAndClose(place)}
             >

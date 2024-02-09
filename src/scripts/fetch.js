@@ -1,4 +1,4 @@
-const apiKey = "ed2f6984e333c4b5fc95ef789ecd5dec"
+const apiKey = "afb616110eeb6f4b68d7bba79ad12fca"
 
 function getWeatherLocations (lat, lon) {
   return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`)

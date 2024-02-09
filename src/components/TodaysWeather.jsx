@@ -14,7 +14,7 @@ export default function TodayWeather({ weatherData, isMph }) {
         xl:grid-cols-2 ">
 
         <article className="flex flex-col items-center bg-blue-1 h-[204px] px-[12px] py-[18px] 
-        max-sm:w-[100%] sm:w-[100%] ">
+        max-sm:w-[100%] sm:w-[100%] hover:bg-sky-800">
           <p className="text-base font-medium pb-2">Wind status</p>
           <p className="text-6xl font-bold">
 
@@ -32,7 +32,7 @@ export default function TodayWeather({ weatherData, isMph }) {
           </div>
         </article>
 
-        <article className="flex flex-col items-center bg-blue-1 w-[100%] h-[204px] py-4 px-12 ">
+        <article className="flex flex-col items-center bg-blue-1 w-[100%] h-[204px] py-4 px-12 hover:bg-sky-800">
           <p className="text-base font-medium pb-2">Humidity</p>
           <p className="text-6xl font-bold">
             {weatherData.humidity}
@@ -49,7 +49,7 @@ export default function TodayWeather({ weatherData, isMph }) {
           <span className="flex justify-end w-full">%</span>
         </article>
 
-        <article className="flex flex-col items-center bg-blue-1 w-[100%] h-[204px] p-6 justify-center">
+        <article className="flex flex-col items-center bg-blue-1 w-[100%] h-[204px] p-6 justify-center hover:bg-sky-800">
           <p className="text-base font-medium pb-2 ">Visibility</p>
           <p className="text-6xl font-bold">
             {weatherData.visibilityMiles.toFixed(1)}{" "}
@@ -57,7 +57,7 @@ export default function TodayWeather({ weatherData, isMph }) {
           </p>
         </article>
 
-        <article className="flex flex-col items-center bg-blue-1 w-[100%] h-[204px] p-6 justify-center">
+        <article className="flex flex-col items-center bg-blue-1 w-[100%] h-[204px] p-6 justify-center hover:bg-sky-800">
           <p className="text-base font-medium pb-2">Air Pressure</p>
           <p className="text-6xl font-bold">
             {weatherData.airPressure}{" "}

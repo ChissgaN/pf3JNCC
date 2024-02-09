@@ -18,7 +18,7 @@ export default function Weak({ keys, forecastData,isFahrenheit }) {
         
         const weather = forecastData[day].weather;
         return (
-          <article className="w-[100%] h-[200px] flex flex-col items-center bg-blue-1 pb-4 pt-5 px-3 m-auto "
+          <article className="w-[100%] h-[200px] flex flex-col items-center bg-blue-1 pb-4 pt-5 px-3 m-auto hover:bg-sky-800"
           key={day}>
             
             <p className="text-base font-medium pb-3">{day} </p>

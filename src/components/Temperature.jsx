@@ -13,7 +13,7 @@ export default function Temperatura({ changeFahre, changeCels }) {
     <div className="absolute top-4 right-[75px] hidden md:block ">
       <button
         type="button"
-        className="rounded-full  h-[40px] w-[40px] font-bold text-silver bg-[#585676] undefined mx-3"
+        className="rounded-full  h-[40px] w-[40px] font-bold text-silver bg-[#585676] undefined mx-3 hover:scale-105"
         onClick={() => {
           changeCels();
           paintSky();
@@ -24,7 +24,7 @@ export default function Temperatura({ changeFahre, changeCels }) {
       </button>
       <button
         type="button"
-        className="rounded-full  h-[40px] w-[40px] font-bold text-silver  bg-[#585676] undefined "
+        className="rounded-full  h-[40px] w-[40px] font-bold text-silver  bg-[#585676] undefined hover:scale-105"
         onClick={() => {
           changeFahre();
           paintSky();
