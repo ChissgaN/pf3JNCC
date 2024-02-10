@@ -34,7 +34,7 @@ function App() {
 
   const changeWeather = (data) => {
     const { weather, main, visibility, wind, name } = data;
-    const date = new Date(); // Obtener la dateDay actual
+    const date = new Date();
     const dateOptions = { weekday: "short", day: "numeric", month: "short" };
 
     setWeatherData({
@@ -57,7 +57,7 @@ function App() {
   const changeFahreorecast = (data) => {
     const dailyForeca = [];
 
-    // Iterar sobre cada segmento de tiempo en el pronóstico extendido
+    
     data.list.forEach((segment) => {
       const dateText = segment.dt_txt;
       const dateDay = new Date(dateText);
@@ -66,7 +66,7 @@ function App() {
         day: "numeric",
         month: "short",
       });
-      // Si es un nuevo día, inicializar el objeto para ese día
+      
       if (!dailyForeca[day]) {
         dailyForeca[day] = {
           minTemp: segment.main.temp,
@@ -74,7 +74,7 @@ function App() {
           weather: segment.weather[0].main,
         };
       } else {
-        // Actualizar las Temps mínima y máxima si corresponde
+        
         dailyForeca[day].minTemp = Math.min(
           dailyForeca[day].minTemp,
           segment.main.temp
@@ -91,14 +91,14 @@ function App() {
   };
 
   const cords = () => {
-    // Verificar si el navegador soporta la geolocalización
+    
     if ("geolocation" in navigator) {
-      // Obtener la ubicación actual del usuario
+      
       navigator.geolocation.getCurrentPosition(function (position) {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
 
-        // Llamar a una función para obtener datos del clima, por ejemplo
+        
         getWeatherLocations(lat, lon).then((data) => changeWeather(data));
         getForecaLocations(lat, lon).then((data) => changeFahreorecast(data));
       });
